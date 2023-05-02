@@ -42,7 +42,7 @@ def shop(request):
 def shopdetails(request, id):
     product = Product.objects.get(id=id)
     multipleimg = ProductImage.objects.filter(product=product)
-    cate=Category.objects.get(id=id)
+    cate=product.category
     
     try:
         product_offers = ProductOffer.objects.get(product=product)
