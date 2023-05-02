@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 import os
 
 
@@ -22,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-8h7ne^dpn8!=1u8bnp6vufwd(u=r)tg$7r%pw!2fev5=s#moof'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -95,9 +96,9 @@ AUTH_USER_MODEL = 'accounts.Customer'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'new_db',
-        'USER': 'athul',
-        'PASSWORD': '123',
+        'NAME': config('db_name'),
+        'USER': config('db_user'),
+        'PASSWORD': config('db_pass'),
         'HOST': 'localhost',
     }
 }
@@ -153,17 +154,17 @@ MEDIA_ROOT = BASE_DIR/'uploads'
 MEDIA_URL = 'media/'
 
 
-EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND=config('EMAIL_BACKEND')
 EMAIL_HOST='smtp.gmail.com'
-EMAIL_PORT=587
-EMAIL_HOST_USER='athulcmathew121@gmail.com'
-EMAIL_HOST_PASSWORD='eakespynbjsnftgo'
+EMAIL_PORT=config('EMAIL_HOST')
+EMAIL_HOST_USER=config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD=config('eakespynbjsnftgo')
 EMAIL_USE_TLS=True
 ############################
 
 
 
-RAZOR_KEY_ID = 'rzp_test_PRLA5Msodl0eXN'
+RAZOR_KEY_ID = config('RAZOR_KEY_ID')
 
 
-RAZOR_KEY_SECRET = 'ebuT9QlqBfCWfVNens8KbgHF'
+RAZOR_KEY_SECRET = config('RAZOR_KEY_SECRET')
